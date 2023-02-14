@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export const Filter = ({ value, onChange }) => (
+export const Filter = ({ value, onFilter }) => (
   <>
-    <input type="text" value={value} onChange={onChange} />
+    <input type="text" value={value} onChange={onFilter} />
   </>
 );
 
 Filter.propTypes = {
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
+  onFilter: PropTypes.func.isRequired,
 };
