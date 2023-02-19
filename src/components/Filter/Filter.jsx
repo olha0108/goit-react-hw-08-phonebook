@@ -1,12 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { filterContactAction } from 'redux/actions';
 
-export const Filter = ({ value, onFilter }) => (
-  <>
-    <input type="text" value={value} onChange={onFilter} />
-  </>
-);
+export const Filter = () => {
+  const dispatch = useDispatch();
 
-Filter.propTypes = {
-  onFilter: PropTypes.func.isRequired,
+  const onFilter = e => {
+    dispatch(filterContactAction(e.target.value.toLowerCase()));
+  };
+
+  return (
+    <>
+      <input type="text" onChange={onFilter} />
+    </>
+  );
 };
