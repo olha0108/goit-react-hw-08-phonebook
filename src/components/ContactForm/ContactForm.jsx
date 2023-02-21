@@ -1,6 +1,6 @@
 import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContactAction } from 'redux/actions';
+import { addContact } from 'redux/contactsSlice';
 
 export const ContactForm = () => {
   const contacts = useSelector(state => state.contacts);
@@ -13,13 +13,12 @@ export const ContactForm = () => {
       number: e.target.number.value,
       id: nanoid(),
     };
-    contacts.forEach(({ name }) => {
-      if (name.toLowerCase() === e.target.name.value.toLowerCase()) {
-        alert(`${name} is already in contacts`);
-        e.target.reset();
-      }
-    });
-    dispatch(addContactAction(newContact));
+    if (contacts.some(e => e.name === newContact.name)) {
+      alert(`${newContact.name} is already in contacts`);
+      e.target.reset();
+      return;
+    }
+    dispatch(addContact(newContact));
     e.target.reset();
   };
 
