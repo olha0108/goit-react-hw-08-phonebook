@@ -13,9 +13,9 @@ export const ContactList = ({ contacts }) => {
   //     contact.number.replace(/-|\s/g, '').includes(filter.replace(/-|\s/g, ''))
   // );
 
-  const handleDeleteContact = () => {
-    dispatch(deleteContact(contacts.id));
-  };
+  //const handleDeleteContact = () => {
+  //  dispatch(deleteContact(id));
+  //};
 
   return (
     <ul>
@@ -24,7 +24,7 @@ export const ContactList = ({ contacts }) => {
           return (
             <li key={id}>
               {name}: {number}
-              <button type="submit" onClick={() => handleDeleteContact(id)}>
+              <button type="submit" onClick={() =>  dispatch(deleteContact(id))}>
                 Delete
               </button>
             </li>
