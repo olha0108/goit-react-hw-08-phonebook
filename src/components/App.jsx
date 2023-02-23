@@ -6,10 +6,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { ThreeDots } from 'react-loader-spinner';
 import { selectIsLoading } from 'redux/selectors';
+import { selectContacts } from 'redux/selectors';
 
 export const App = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
+  const contacts = useSelector(selectContacts);
   /// const error = useSelector(selectError);
 
   useEffect(() => {
@@ -24,7 +26,7 @@ export const App = () => {
       <h2>Contacts</h2>
       <p>Find contacts by name</p>
       <Filter />
-      <ContactList />
+      <ContactList contacts={contacts} />
     </div>
   );
 };

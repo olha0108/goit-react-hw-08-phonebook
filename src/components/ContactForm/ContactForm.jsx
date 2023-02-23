@@ -1,9 +1,9 @@
-import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/operations';
+import { selectContacts } from 'redux/selectors';
 
 export const ContactForm = () => {
-  const contacts = useSelector(state => state.contacts);
+  const contacts = useSelector(selectContacts);
   const dispatch = useDispatch();
 
   const handleSubmit = e => {
@@ -11,7 +11,6 @@ export const ContactForm = () => {
     const newContact = {
       name: e.target.name.value,
       number: e.target.number.value,
-      id: nanoid(),
     };
     if (contacts.some(e => e.name === newContact.name)) {
       alert(`${newContact.name} is already in contacts`);
