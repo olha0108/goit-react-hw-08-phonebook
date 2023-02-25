@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { authOperations } from '../redux/auth';
+import { register } from 'redux/auth/auth.operations';
 
 const styles = {
   form: {
@@ -12,8 +12,7 @@ const styles = {
     marginBottom: 15,
   },
 };
-
-export default function RegisterView() {
+export const RegisterPage = () => {
   const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -34,7 +33,7 @@ export default function RegisterView() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(authOperations.register({ name, email, password }));
+    dispatch(register({ name, email, password }));
     setName('');
     setEmail('');
     setPassword('');
@@ -74,4 +73,4 @@ export default function RegisterView() {
       </form>
     </div>
   );
-}
+};

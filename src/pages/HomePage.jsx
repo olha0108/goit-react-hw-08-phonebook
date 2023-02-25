@@ -14,7 +14,7 @@ const styles = {
   },
 };
 
-export const HomeView = () => (
+export const HomePage = () => (
   <div style={styles.container}>
     <h1 style={styles.title}>
       page{' '}

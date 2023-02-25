@@ -16,7 +16,7 @@ const barStyles = {
   marginBottom: 20,
 };
 
-export default function TodosView(params) {
+export default function TodosPage(params) {
   const dispatch = useDispatch();
   const isLoadingTodos = useSelector(todosSelectors.getLoading);
 
@@ -31,7 +31,7 @@ export default function TodosView(params) {
         <Filter />
         <Stats />
         <button onClick={toggleModal} aria-label="Добавить todo">
-          <p > Добавить</p >
+          <p> Добавить</p>
         </button>
 
         {isLoadingTodos && <h1>Загружаем...</h1>}
