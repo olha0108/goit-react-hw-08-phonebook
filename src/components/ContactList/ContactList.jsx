@@ -17,7 +17,7 @@ export const ContactList = ({ contacts }) => {
       {filteredContacts.map(({ id, name, number }) => {
         return (
           <>
-            <h2 className={css.h2}>Contacts</h2>
+
             <li key={id} className={css.li}>
               {name}: {number}
               <Button
