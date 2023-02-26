@@ -1,6 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/operations';
 import { selectContacts } from 'redux/selectors';
+import { Button } from '@mui/material';
+import css from './ContactForm.module.css';
 
 export const ContactForm = () => {
   const contacts = useSelector(selectContacts);
@@ -23,9 +25,9 @@ export const ContactForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="name">
-          <p>Name</p>
+      <div className={css.div}>
+        <label htmlFor="name" className={css.label}>
+          Name
         </label>
         <input
           type="text"
@@ -36,9 +38,9 @@ export const ContactForm = () => {
         />
       </div>
 
-      <div>
-        <label htmlFor="number">
-          <p>Number</p>
+      <div className={css.div}>
+        <label htmlFor="number" className={css.label}>
+          Number
         </label>
         <input
           autoComplete="off"
@@ -49,7 +51,9 @@ export const ContactForm = () => {
           required
         />
       </div>
-      <button type="submit">Add contact</button>
+      <Button variant="contained" color="success" size="small" type="submit">
+        Add contact
+      </Button>
     </form>
   );
 };

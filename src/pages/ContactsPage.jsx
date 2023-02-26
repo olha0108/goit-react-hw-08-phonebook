@@ -6,6 +6,7 @@ import { ContactForm } from 'components/ContactForm/ContactForm';
 import { Filter } from 'components/Filter/Filter';
 import { ThreeDots } from 'react-loader-spinner';
 import { selectIsLoading, selectContacts, selectError } from 'redux/selectors';
+import css from './Pages.module.css';
 
 export const ContactsPage = () => {
   const dispatch = useDispatch();
@@ -20,13 +21,13 @@ export const ContactsPage = () => {
 
   return (
     <>
-        <h1>Phonebook</h1>
-        <ContactForm />
-        {isLoading && !error && <ThreeDots />}
-        <h2>Contacts</h2>
-        <p>Find contacts by name</p>
-        <Filter />
-        <ContactList contacts={contacts} />
+      <h1 className={css.h1}>Phonebook</h1>
+      <ContactForm />
+      {isLoading && !error && <ThreeDots />}
+
+      <p className={css.p}>Find contacts by name</p>
+      <Filter />
+      <ContactList contacts={contacts} />
     </>
   );
 };

@@ -1,11 +1,9 @@
 .link {
-    display: inline-block;
-    text-decoration: none;
-    padding: 12px;
-    font-weight: 700;
-    color: #2a363b;
-}
-
-.link.active {
-    color: #e84a5f;
+  display: inline-block;
+  text-decoration: none;
+  padding: 12px;
+  font-weight: 700;
+  color: #2e7d32;
+  align-items: center;
+  align-self: center;
 }

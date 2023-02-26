@@ -1,10 +1,10 @@
 import css from './Pages.module.css';
 import { useDispatch } from 'react-redux';
 import { logIn } from 'redux/auth/operations';
-
+import { Input, Button } from '@mui/material';
 
 export const LoginPage = () => {
-   const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -19,16 +19,21 @@ export const LoginPage = () => {
   };
 
   return (
-    <form className={css.form} onSubmit={handleSubmit} autoComplete="off">
-      <label className={css.label}>
-        Email
-        <input type="email" name="email" />
-      </label>
-      <label className={css.label}>
-        Password
-        <input type="password" name="password" />
-      </label>
-      <button type="submit">Log In</button>
-    </form>
+    <div className={css.div}>
+      <h1 className={css.h1}>Sign in</h1>
+      <form className={css.form} onSubmit={handleSubmit} autoComplete="off">
+        <label className={css.label}>
+          Email
+          <Input color="success" type="email" name="email" />
+        </label>
+        <label className={css.label}>
+          Password
+          <Input color="success" type="password" name="password" />
+        </label>
+        <Button variant="contained" color="success" size="small" type="submit">
+          Log In
+        </Button>
+      </form>
+    </div>
   );
 };
