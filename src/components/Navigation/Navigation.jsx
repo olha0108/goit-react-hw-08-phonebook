@@ -1,34 +1,20 @@
-import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { useAuth } from 'hooks';
+import css from './Navigation.module.css';
 
-const styles = {
-  link: {
-    display: 'inline-block',
-    textDecoration: 'none',
-    padding: 12,
-    fontWeight: 700,
-    color: '#2A363B',
-  },
-  activeLink: {
-    color: '#E84A5F',
-  },
+export const Navigation = () => {
+  const { isLoggedIn } = useAuth();
+
+  return (
+    <nav>
+      <NavLink className={css.link} to="/">
+        Home
+      </NavLink>
+      {isLoggedIn && (
+        <NavLink className={css.link} to="/contacts">
+          Tasks
+        </NavLink>
+      )}
+    </nav>
+  );
 };
-
-const Navigation = () => (
-  <nav>
-    <NavLink to="/" exact style={styles.link} activeStyle={styles.activeLink}>
-      Главная
-    </NavLink>
-
-    <NavLink
-      to="/todos"
-      exact
-      style={styles.link}
-      activeStyle={styles.activeLink}
-    >
-      Заметки
-    </NavLink>
-  </nav>
-);
-
-export default Navigation;

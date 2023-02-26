@@ -1,55 +1,59 @@
-import { fetchCurrentUser } from 'redux/auth/auth.operations';
+import { refreshUser } from 'redux/auth/operations';
 import { useDispatch } from 'react-redux';
-//import { useSelector } from 'react-redux';
 import { Suspense, useEffect } from 'react';
-import { NavbarHeader } from 'components/App.styles';
-import { NavbarLabel } from 'components/App.styles';
-import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { HomePage } from 'pages/HomePage';
 import { RegisterPage } from 'pages/RegisterPage';
 import { LoginPage } from 'pages/LoginPage';
-//import { PublicRoute } from 'components/AuthRouts/PublicRoute';
-//import { PrivateRoute } from 'components/AuthRouts/PrivateRoute';
+import { PublicRoute } from 'components/AuthRouts/PublicRoute';
+import { PrivateRoute } from 'components/AuthRouts/PrivateRoute';
+import { Layout } from 'components/AuthRouts/Layout';
 import { ContactsPage } from 'pages/ContactsPage';
+import { useAuth } from 'hooks';
+
 export const App = () => {
   const dispatch = useDispatch();
+  const { isRefreshing } = useAuth();
 
   useEffect(() => {
-    dispatch(fetchCurrentUser());
+    dispatch(refreshUser());
   }, [dispatch]);
 
-  return (
+  return isRefreshing ? (
+    <b>Refreshing user...</b>
+  ) : (
     <BrowserRouter basename="goit-react-hw-08-phonebook">
       <Suspense fallback={<p>Loading...</p>}>
-        <NavbarHeader>
-          <NavLink to="/" end>
-            <NavbarLabel>Home</NavbarLabel>
-          </NavLink>
-          <NavLink to="/login">
-            <NavbarLabel>Login </NavbarLabel>
-          </NavLink>
-          <NavLink to="/register">
-            <NavbarLabel>Register </NavbarLabel>
-          </NavLink>
-          <NavLink to="/contacts">
-            <NavbarLabel>Contacts </NavbarLabel>
-          </NavLink>
-        </NavbarHeader>
-
         <Routes>
-          <Route path="" element={<HomePage />} />
-
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-
-          <Route path="/contacts" element={<ContactsPage />} />
-          {/*           <Route path="" element={<PublicRoute />}>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<HomePage />} />
             <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
+            <Route
+              path="/register"
+              element={
+                <PublicRoute
+                  redirectTo="/contacts"
+                  component={<RegisterPage />}
+                />
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                <PublicRoute redirectTo="/contacts" component={<LoginPage />} />
+              }
+            />
+
+            <Route
+              path="/contacts"
+              element={
+                <PrivateRoute
+                  redirectTo="/login"
+                  component={<ContactsPage />}
+                />
+              }
+            />
           </Route>
-          <Route path="" element={<PrivateRoute />}>
-               <Route path="/contacts" element={<ContactsPage />} />
- </Route> */}
         </Routes>
       </Suspense>
     </BrowserRouter>
