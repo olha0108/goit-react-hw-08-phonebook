@@ -10,9 +10,9 @@ Check out the documentation (https://connections-api.herokuapp.com/docs/). It su
 
 Add routing with the React Router library. The application should have several pages:
 
-/register - public route to register a new user with a form
-/login - public login route of an existing user with a form
-/contacts - a private route for your contact list
+/register - public route to register a new user with a form. 
+/login - public login route of an existing user with a form. 
+/contacts - a private route for your contact list. 
 Add a navigation component Navigation with links to navigate routes.
 
 2. User menu​
